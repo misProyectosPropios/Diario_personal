@@ -18,5 +18,9 @@ function is_leap_year(year) {
 }
 
 function how_many_days_have_a_month(month, year) {
-    
+
+}
+
+function day_when_the_1st_day_is_of_a_month(month, year) {
+
 }
