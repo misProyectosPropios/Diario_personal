@@ -16,3 +16,7 @@ var number_of_days_in_a_month = {
 function is_leap_year(year) {
 
 }
+
+function how_many_days_have_a_month(month, year) {
+    
+}
