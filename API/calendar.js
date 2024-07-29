@@ -14,7 +14,19 @@ var number_of_days_in_a_month = {
   }
 
 function is_leap_year(year) {
-
+    let bis;
+    if (year % 4 != 0) {
+      bis = false
+    }
+    else if (year % 100 != 0) {
+      bis = true
+    }
+    else if (year % 400 != 0) {
+      bis = false
+    } else {
+      bis = true
+    }
+    return bis
 }
 
 function how_many_days_have_a_month(month, year) {
