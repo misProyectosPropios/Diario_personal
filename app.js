@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
     res.send('./views/month.html')
   })
 
+  app.get('/mes', (req, res) => {
+    res.sendFile(__dirname + '/views/mes_con_6_filas.html')
+  })
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
   })
