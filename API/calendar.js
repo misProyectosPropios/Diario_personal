@@ -56,3 +56,7 @@ function move_n_numbers_modulo_x(number_to_return, number_to_add, modulo) {
   }
   return res;
 }
+
+function get_week(date, day) {
+
+}

@@ -109,9 +109,7 @@ const port = 3000
         return res
     }
 
-    function get_week(date, day) {
-
-    }
+    
 
     function has_parameter_on_URL(req, parameter_name) {
         let res = true
