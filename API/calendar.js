@@ -60,3 +60,7 @@ function move_n_numbers_modulo_x(number_to_return, number_to_add, modulo) {
 function get_week(date, day) {
 
 }
+
+function get_all_weeks_of_month() {
+  
+}
