@@ -20,7 +20,7 @@ const port = 3000
 //URL's paths
     app.get('/', (req, res) => {
         //Redireccionarlo al mes actual
-        redirect_with_parameters('/m', res) 
+        redirect_with_parameters('/month', res) 
     })
 
     app.get('/day', (req, res) => {
@@ -70,7 +70,7 @@ const port = 3000
         else {
             res.status(404).send("404 PATH NOT FOUND")
         }
-        res.redirect(path)
+        res.redirect(path + parameters)
     }
 
     //The parameters should be booleans to indicate if this parameters should be included
@@ -80,7 +80,8 @@ const port = 3000
         let date = new Date()
         let res = '?'
         if (month === true) {
-            res += "month=" + date.getMonth() + 1
+            let month_number  = date.getMonth() + 1
+            res += "month=" + (month_number)
         }
         if (year === true) {
             res += "&year=" + date.getFullYear()
