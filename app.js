@@ -18,6 +18,11 @@ app.get('/', (req, res) => {
     res.send('./views/calendar.html')
   })
 
+  app.get('/day', (req, res) => {
+    //Look if it has the parameters neded, else redirect to the actual day
+    res.sendFile(__dirname + '/views/calendar.html')
+  })
+
   app.get('/mes', (req, res) => {
     //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
     res.sendFile(__dirname + '/views/calendar.html')
