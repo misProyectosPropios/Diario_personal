@@ -36,7 +36,7 @@ function how_many_days_have_a_month(month, year) {
   } else {
     days = number_of_days_in_a_month[month]
   }
-  return res
+  return days
 }
 
 function day_of_a_particular_date(day, month, year) {

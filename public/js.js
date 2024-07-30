@@ -40,7 +40,7 @@ window.onload = async function() {
     if (getPathname() === '/month') {
         let res = await call_API('/api/month', getParameters())
         console.log(res)
-        document.getElementById('calendar').innerHTML = 'Hola'
+        document.getElementById('calendar').innerHTML = res
         //alert("month")
     } 
     else if (getPathname() === '/week') {

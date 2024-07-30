@@ -1,7 +1,7 @@
 //Requires
 body_parser = require('body-parser')
 const express = require('express')
-const calendar = require('./API/api.js')
+const calendar = require('./API/calendar.js')
 //Creation of the server
 const app = express()
 const port = 3000
@@ -65,7 +65,15 @@ const port = 3000
     })
 
     app.get('/api/month', (req, res) => {
-        res.send(create_calendar_for_month(1,1,1)) //Cambiar
+        if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            let month = req.query['month']
+            let year = req.query['year']
+            res.send(create_calendar_for_month(month, year))
+        } else {
+            res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
+        }
+        
+        
     })
 
 //FUNCTIONS
@@ -113,6 +121,7 @@ const port = 3000
 
     function has_parameter_on_URL(req, parameter_name) {
         let res = true
+        console.log(parameter_name)
         if (req.query[parameter_name] === undefined) {
             res = false
         } 
@@ -120,49 +129,50 @@ const port = 3000
     }
 
     function create_calendar_for_month(month, year) {
-        let res = ''
-        let days_in_the_month = 
-        console.log(info_sobre_calendario)
-        /*
-    let cantidad_de_dias = info_sobre_calendario["cantidad_de_dias_del_mes"]
-    let cantidad_de_dias_del_mes_anterior = info_sobre_calendario["cantidad_de_dias_del_mes_anterior"]
-    let cuantas_filas_ocupa_el_mes = info_sobre_calendario["cuantas_filas_ocupa_el_mes"]
-    let cuando_cae_1er_dia = info_sobre_calendario["cuando_cae_1er_dia"]
-    let numero_de_dia_puesto_en_calendario = 1
-    let se_completo_los_dias_del_mes = false
-    inner_table_html = '<tr>\n \
-                    <th>LUN</th>\n \
-                    <th>MAR</th>\n \
-                    <th>MIE</th>\n \
-                    <th>JUE</th>\n \
-                    <th>VIE</th>\n \
-                    <th>SAB</th>\n \
-                    <th>DOM</th>\n \
-                </tr>'  //Se van a agregar las 7 * 6 filas, cada una con su respectivo ID, así como clase
-
-    for (let i = 0; i < 6; i++) {//Las 6 filas agregando 
-        inner_table_html += '<tr>'
-        for(let k = 0; k < 7; k++) { //los 7 días de la semana
-            if (cuando_cae_1er_dia === 0) {
-                inner_table_html += '<td>' + numero_de_dia_puesto_en_calendario + '</td>\n'
-                numero_de_dia_puesto_en_calendario += 1
-            } else if(se_completo_los_dias_del_mes === true) {
-                inner_table_html += '<td>' + numero_de_dia_puesto_en_calendario + '</td>\n'
-                numero_de_dia_puesto_en_calendario += 1
-            }
-            else  {
-                inner_table_html += '<td>' + (cantidad_de_dias_del_mes_anterior - cuando_cae_1er_dia) + '</td>\n'
-                cuando_cae_1er_dia -= 1
-            }
-            if (numero_de_dia_puesto_en_calendario > cantidad_de_dias) {
-                se_completo_los_dias_del_mes = true
-                numero_de_dia_puesto_en_calendario = 1
-            }
-            
+        let days_in_the_month = calendar.how_many_days_have_a_month(month, year)
+        let day_of_1st_day = calendar.day_of_a_particular_date(1,month, year)
+        //El anterior mes
+        if (month === 1) {
+            month = 12
+            year = year - 1
+        } else {
+            month = month - 1
         }
-    inner_table_html += '</tr>'
-    }
-    */
+        let days_in_the_previous_month = calendar.how_many_days_have_a_month(month, year)
+        
+        let number_written_on_calendar = 1
+        let is_over_all_days_of_month = false
+        let res ='<tr>\n \
+            <th>LUN</th>\n \
+            <th>MAR</th>\n \
+            <th>MIE</th>\n \
+            <th>JUE</th>\n \
+            <th>VIE</th>\n \
+            <th>SAB</th>\n \
+            <th>DOM</th>\n \
+            </tr>' //ONE FOR EACH DAY, STARTING FROM MONDAY (LUNES)
+            
+        for (let i = 0; i < 6; i++) { //The six rows
+            res += '<tr>'
+            for(let k = 0; k < 7; k++) { //The 7 columns of the week
+                if (day_of_1st_day === 0) {
+                    res += '<td>' + number_written_on_calendar + '</td>\n'
+                    number_written_on_calendar += 1
+                } else if(is_over_all_days_of_month === true) {
+                    res += '<td>' + number_written_on_calendar + '</td>\n'
+                    number_written_on_calendar += 1
+                }
+                else  {
+                    res += '<td>' + (days_in_the_previous_month - day_of_1st_day) + '</td>\n'
+                    day_of_1st_day -= 1
+                }
+                if (number_written_on_calendar > days_in_the_month) {
+                    is_over_all_days_of_month = true
+                    number_written_on_calendar = 1
+                }
+            }
+            res += '</tr>'
+        }
         return res
     }
 
