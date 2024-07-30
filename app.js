@@ -45,7 +45,11 @@ const port = 3000
 
     app.get('/month', (req, res) => {
         //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
-        res.sendFile(__dirname + '/views/calendar.html')
+        if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            res.sendFile(__dirname + '/views/calendar.html')
+        } else {
+            redirect_with_parameters('/day', res)
+        }
     })
 
     app.listen(port, () => {
