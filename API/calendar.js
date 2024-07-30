@@ -57,10 +57,15 @@ function move_n_numbers_modulo_x(number_to_return, number_to_add, modulo) {
   return res;
 }
 
-function get_week(date, day) {
+function get_week(date, day, month, year) {
 
 }
 
-function get_all_weeks_of_month() {
-  
+function get_all_weeks_of_month(month, year) {
+  let res = []
+  cuando_cae_primer_dia = day_of_a_particular_date(1 ,month, year)
+  if (cuando_cae_primer_dia !== 0) {
+    
+  } 
+  return res
 }
