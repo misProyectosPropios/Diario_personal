@@ -54,5 +54,13 @@ const port = 3000
 
 
     function redirect_with_parameters(path, res) {
+        if (path === '/day') {
 
+        } 
+        else if (path === '/week') {
+
+        }
+        else if (path === '/month') {
+            
+        }
     }
