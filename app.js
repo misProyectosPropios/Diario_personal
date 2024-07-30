@@ -69,8 +69,24 @@ const port = 3000
     }
 
     //The parameters should be booleans to indicate if this parameters should be included
-    //IF one is true, the next to the rigth should also be true
+    //It returns with the actual date
+    //Month is always true
     function create_parameters_to_send(day, week, month) {
+        let date = new Date()
+        let res = '?'
+        if (month === true) {
+            res += "month=" + date.getMonth() + 1
+        }
+        if (day === true) {
+            res += "&day=" + date.getDate();
+        }
+        if (week === true) {
+            res += "&week" + date.get_week(date.getDate(), date.getDay()); //For calculte this, I need another function, fron congruency and that
+        }
+        return res
+    }
+
+    function get_week(date, day) {
 
     }
 
