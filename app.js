@@ -56,16 +56,16 @@ const port = 3000
         console.log(`Example app listening on port ${port}`)
     })
 
-    app.post('/api/day', (req, res) => {
+    app.get('/api/day', (req, res) => {
         res.json({})
     })
 
-    app.post('/api/week', (req, res) => {
+    app.get('/api/week', (req, res) => {
         res.json({})
     })
 
-    app.post('/api/month', (req, res) => {
-        res.json({})
+    app.get('/api/month', (req, res) => {
+        res.json({"hola" : "hola"})
     })
 
 //FUNCTIONS

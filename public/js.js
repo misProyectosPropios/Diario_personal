@@ -24,11 +24,13 @@ function getPathname() {
 }
 
 async function call_API(path, parameters) {
-    
+    fetch(path + parameters)
+    .then(response => console.log(response))
 }
 
 window.onload = function() {
     if (getPathname() === '/month') {
+        call_API('/api/month', getParameters())
         document.getElementById('calendar').innerHTML = 'Hola'
         //alert("month")
     } 
