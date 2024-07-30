@@ -120,13 +120,19 @@ const port = 3000
     }
 
     function create_calendar_for_month(month, year) {
-
+        let res = ''
+        
+        return res
     }
 
     function create_calendar_for_week(week, month, year) {
+        let res = ''
 
+        return res
     }
 
     function create_calendar_for_day(day, month, year) {
+        let res = ''
 
+        return res
     }
