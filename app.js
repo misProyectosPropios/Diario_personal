@@ -13,6 +13,7 @@ const port = 3000
         next()
     }) 
 
+//URL's paths
     app.get('/', (req, res) => {
         //Redireccionarlo al mes actual
         res.send('./views/calendar.html')
@@ -36,16 +37,17 @@ const port = 3000
     app.listen(port, () => {
         console.log(`Example app listening on port ${port}`)
     })
-    
+
     app.post('/api/day', (req, res) => {
         res.json({})
     })
-    
+
     app.post('/api/week', (req, res) => {
         res.json({})
     })
-    
+
     app.post('/api/month', (req, res) => {
         res.json({})
     })
 
+//FUNCTIONS
