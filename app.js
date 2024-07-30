@@ -20,7 +20,7 @@ const port = 3000
 //URL's paths
     app.get('/', (req, res) => {
         //Redireccionarlo al mes actual
-        redirect_with_parameters('/mes', res) 
+        redirect_with_parameters('/m', res) 
     })
 
     app.get('/day', (req, res) => {
@@ -66,6 +66,12 @@ const port = 3000
         else if (path === '/month') {
 
         }
+    }
+
+    //The parameters should be booleans to indicate if this parameters should be included
+    //IF one is true, the next to the rigth should also be true
+    function create_parameters_to_send(day, week, month) {
+
     }
 
     function has_parameter_on_URL(req, parameter_name) {
