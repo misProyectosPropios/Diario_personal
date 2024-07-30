@@ -23,6 +23,11 @@ const port = 3000
      res.sendFile(__dirname + '/views/calendar.html')
     })
 
+    app.get('/week', (req, res) => {
+        //Look if it has the parameters neded, else redirect to the actual week
+        res.sendFile(__dirname + '/views/calendar.html')
+    })
+
     app.get('/mes', (req, res) => {
       //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
       res.sendFile(__dirname + '/views/calendar.html')
