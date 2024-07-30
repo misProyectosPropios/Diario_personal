@@ -58,7 +58,7 @@ const port = 3000
 
     app.get('/api/day', (req, res) => {
         res.json({})
-    })
+    })  
 
     app.get('/api/week', (req, res) => {
         res.json({})
@@ -117,4 +117,16 @@ const port = 3000
             res = false
         } 
         return res
+    }
+
+    function create_calendar_for_month(month, year) {
+
+    }
+
+    function create_calendar_for_week(week, month, year) {
+
+    }
+
+    function create_calendar_for_day(day, month, year) {
+
     }
