@@ -61,6 +61,10 @@ const port = 3000
 
         }
         else if (path === '/month') {
-            
+
         }
+    }
+
+    function has_parameter(parameter_name) {
+        
     }
