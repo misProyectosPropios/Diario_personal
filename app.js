@@ -1,3 +1,7 @@
+//Requires
+body_parser = require('body-parser')
+const express = require('express')
+
 //Creation of the server
 const app = express()
 const port = 3000
@@ -65,6 +69,10 @@ const port = 3000
         }
     }
 
-    function has_parameter(parameter_name) {
-        
+    function has_parameter_on_URL(req, parameter_name) {
+        let res = true
+        if (req.query[parameter_name] === undefined) {
+            res = false
+        } 
+        return res
     }
