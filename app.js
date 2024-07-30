@@ -14,10 +14,12 @@ app.use(function middleware(req, res, next) {
 }) 
 
 app.get('/', (req, res) => {
+    //Redireccionarlo al mes actual
     res.send('./views/month.html')
   })
 
   app.get('/mes', (req, res) => {
+    //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
     res.sendFile(__dirname + '/views/mes_con_6_filas.html')
   })
 
