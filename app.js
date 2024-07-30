@@ -3,30 +3,30 @@ const app = express()
 const port = 3000
 
 //Middleware
-app.use(body_parser.urlencoded({ extended: false })) //Para poder acceder a los parametros con POST, por medio del req.body[nombre_del-parametro]
+    app.use(body_parser.urlencoded({ extended: false })) //Para poder acceder a los parametros con POST, por medio del req.body[nombre_del-parametro]
 
-app.use(express.static('public')) //Para enviar el archivo js.js, el css y las imagines
+    app.use(express.static('public')) //Para enviar el archivo js.js, el css y las imagines
 
-app.use(function middleware(req, res, next) {
-  console.log(req.method + " " + req.path + " - " + req.ip + " - " + req.url)
-  console.log()
-  next()
-}) 
+    app.use(function middleware(req, res, next) {
+        console.log(req.method + " " + req.path + " - " + req.ip + " - " + req.url)
+        console.log()
+        next()
+    }) 
 
-app.get('/', (req, res) => {
-    //Redireccionarlo al mes actual
-    res.send('./views/calendar.html')
-  })
+    app.get('/', (req, res) => {
+        //Redireccionarlo al mes actual
+        res.send('./views/calendar.html')
+    })
 
-  app.get('/day', (req, res) => {
-    //Look if it has the parameters neded, else redirect to the actual day
-    res.sendFile(__dirname + '/views/calendar.html')
-  })
+    app.get('/day', (req, res) => {
+     //Look if it has the parameters neded, else redirect to the actual day
+     res.sendFile(__dirname + '/views/calendar.html')
+    })
 
-  app.get('/mes', (req, res) => {
-    //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
-    res.sendFile(__dirname + '/views/calendar.html')
-  })
+    app.get('/mes', (req, res) => {
+      //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
+      res.sendFile(__dirname + '/views/calendar.html')
+    })
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
