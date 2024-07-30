@@ -24,8 +24,14 @@ const port = 3000
     })
 
     app.get('/day', (req, res) => {
-     //Look if it has the parameters neded, else redirect to the actual day
-     res.sendFile(__dirname + '/views/calendar.html')
+        //Look if it has the parameters neded, else redirect to the actual day
+        if (has_parameter_on_URL(req, 'day') && has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            res.sendFile(__dirname + '/views/calendar.html')
+        } else {
+            redirect_with_parameters('/day', res)
+        }
+     
+     
     })
 
     app.get('/week', (req, res) => {
