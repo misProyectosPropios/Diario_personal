@@ -33,19 +33,19 @@ const port = 3000
       res.sendFile(__dirname + '/views/calendar.html')
     })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
-
-app.post('/api/day', (req, res) => {
-    res.json({})
-})
-
-app.post('/api/week', (req, res) => {
-    res.json({})
-})
-
-app.post('/api/month', (req, res) => {
-    res.json({})
-})
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`)
+    })
+    
+    app.post('/api/day', (req, res) => {
+        res.json({})
+    })
+    
+    app.post('/api/week', (req, res) => {
+        res.json({})
+    })
+    
+    app.post('/api/month', (req, res) => {
+        res.json({})
+    })
 
