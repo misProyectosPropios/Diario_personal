@@ -9,6 +9,10 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function getParameters() {
+    return location.href.slice(location.href.indexOf('?'))
+}
+
 function getURL() {
     return location.href.slice(0, location.href.indexOf('?'))
 }
@@ -18,6 +22,7 @@ function getPathname() {
     console.log(url.pathname)
     return url.pathname;
 }
+
 window.onload = function() {
     if (getPathname() === '/month') {
         document.getElementById('calendar').innerHTML = 'Hola'
