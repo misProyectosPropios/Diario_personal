@@ -23,3 +23,11 @@ nav ol {
 nav ol li {
     display: inline;
 }
+
+.flex {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    align-content:stretch;
+    height: 90vh;
+}
