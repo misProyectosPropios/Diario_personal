@@ -23,6 +23,10 @@ function getPathname() {
     return url.pathname;
 }
 
+async function call_API(path, parameters) {
+    
+}
+
 window.onload = function() {
     if (getPathname() === '/month') {
         document.getElementById('calendar').innerHTML = 'Hola'
