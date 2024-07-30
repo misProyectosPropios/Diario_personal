@@ -51,3 +51,8 @@ const port = 3000
     })
 
 //FUNCTIONS
+
+
+    function redirect_with_parameters(path, res) {
+
+    }
