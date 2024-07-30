@@ -57,25 +57,33 @@ const port = 3000
 //FUNCTIONS
 
     function redirect_with_parameters(path, res) {
+        let parameters;
         if (path === '/day') {
-
+            parameters = create_parameters_to_send(true, false, true, true)
         } 
         else if (path === '/week') {
-
+            parameters = create_parameters_to_send(false, true, true, true)
         }
         else if (path === '/month') {
-
+            parameters = create_parameters_to_send(false, false, true, true)
         }
+        else {
+            res.status(404).send("404 PATH NOT FOUND")
+        }
+        res.redirect(path)
     }
 
     //The parameters should be booleans to indicate if this parameters should be included
     //It returns with the actual date
-    //Month is always true
-    function create_parameters_to_send(day, week, month) {
+    //Month is always true and year too
+    function create_parameters_to_send(day, week, month, year) {
         let date = new Date()
         let res = '?'
         if (month === true) {
             res += "month=" + date.getMonth() + 1
+        }
+        if (year === true) {
+            res += "&year=" + date.getFullYear()
         }
         if (day === true) {
             res += "&day=" + date.getDate();
