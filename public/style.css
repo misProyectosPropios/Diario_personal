@@ -34,10 +34,14 @@ nav ol li {
 
 
 
-.calendario {
+.calendar {
     width: 70%;
     height: 100%;
     border: 1px solid rgb(177, 175, 255);
     border-collapse: collapse;
     background-color: #EAF2D7;
+}
+
+th, td {
+    border: 1px solid rgba(177, 175, 255, 0.7);
 }
