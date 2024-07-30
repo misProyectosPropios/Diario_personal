@@ -24,13 +24,22 @@ function getPathname() {
 }
 
 async function call_API(path, parameters) {
-    fetch(path + parameters)
-    .then(response => console.log(response))
+    let res
+    await fetch(path + parameters)
+    .then(response => response.text())
+    .then(response => {
+        console.log("Se devuelve respose " + response)
+        res = response
+        console.log("Res ahora es: " +res)
+        return "VAMOS RACING"
+    })
+    return res
 }
 
-window.onload = function() {
+window.onload = async function() {
     if (getPathname() === '/month') {
-        call_API('/api/month', getParameters())
+        let res = await call_API('/api/month', getParameters())
+        console.log(res)
         document.getElementById('calendar').innerHTML = 'Hola'
         //alert("month")
     } 

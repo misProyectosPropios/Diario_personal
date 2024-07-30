@@ -65,7 +65,7 @@ const port = 3000
     })
 
     app.get('/api/month', (req, res) => {
-        res.json({"hola" : "hola"})
+        res.send("Hola")
     })
 
 //FUNCTIONS
