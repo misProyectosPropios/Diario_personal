@@ -20,7 +20,7 @@ const port = 3000
 //URL's paths
     app.get('/', (req, res) => {
         //Redireccionarlo al mes actual
-        res.send('./views/calendar.html')
+        res.sendFile(__dirname + '/views/calendar.html')
     })
 
     app.get('/day', (req, res) => {
