@@ -57,15 +57,15 @@ const port = 3000
     })
 
     app.get('/api/day', (req, res) => {
-        res.json({})
+        res.send(create_calendar_for_day(1,1,1)) //Cambiar
     })  
 
     app.get('/api/week', (req, res) => {
-        res.json({})
+        res.send(create_calendar_for_week(1,1,1)) //Cambiar
     })
 
     app.get('/api/month', (req, res) => {
-        res.send("Hola")
+        res.send(create_calendar_for_month(1,1,1)) //Cambiar
     })
 
 //FUNCTIONS
