@@ -4,3 +4,12 @@ body {
     padding: 0;
 }
 
+nav {
+    display: flex;
+    margin: 0 0;
+    margin-bottom: 2vh;
+    justify-content: flex-end;
+    padding: 0;
+    line-height: 8vh;
+    align-items: center;
+}
