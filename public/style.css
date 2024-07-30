@@ -13,3 +13,13 @@ nav {
     line-height: 8vh;
     align-items: center;
 }
+
+nav ol {
+    /*display: inline-block;*/
+    list-style-type: none;
+    margin: 0 0;
+}
+
+nav ol li {
+    display: inline;
+}
