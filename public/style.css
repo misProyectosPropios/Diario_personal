@@ -32,7 +32,11 @@ nav ol li {
     height: 90vh;
 }
 
-
+.left_panel {
+    width: 18%;
+    height: 100%;
+    background-color: #EAF2D7;
+}
 
 .calendar {
     width: 70%;
