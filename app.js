@@ -20,7 +20,7 @@ const port = 3000
 //URL's paths
     app.get('/', (req, res) => {
         //Redireccionarlo al mes actual
-        res.sendFile(__dirname + '/views/calendar.html')
+        redirect_with_parameters('/mes', res) 
     })
 
     app.get('/day', (req, res) => {
@@ -33,7 +33,7 @@ const port = 3000
         res.sendFile(__dirname + '/views/calendar.html')
     })
 
-    app.get('/mes', (req, res) => {
+    app.get('/month', (req, res) => {
         //Fijarse si tiene parametros: sino tiene, redireccionarlo al mes actual
         res.sendFile(__dirname + '/views/calendar.html')
     })
@@ -55,7 +55,6 @@ const port = 3000
     })
 
 //FUNCTIONS
-
 
     function redirect_with_parameters(path, res) {
         if (path === '/day') {
