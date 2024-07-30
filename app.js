@@ -1,7 +1,7 @@
 //Requires
 body_parser = require('body-parser')
 const express = require('express')
-
+const calendar = require('./API/api.js')
 //Creation of the server
 const app = express()
 const port = 3000
@@ -121,7 +121,48 @@ const port = 3000
 
     function create_calendar_for_month(month, year) {
         let res = ''
-        
+        let days_in_the_month = 
+        console.log(info_sobre_calendario)
+        /*
+    let cantidad_de_dias = info_sobre_calendario["cantidad_de_dias_del_mes"]
+    let cantidad_de_dias_del_mes_anterior = info_sobre_calendario["cantidad_de_dias_del_mes_anterior"]
+    let cuantas_filas_ocupa_el_mes = info_sobre_calendario["cuantas_filas_ocupa_el_mes"]
+    let cuando_cae_1er_dia = info_sobre_calendario["cuando_cae_1er_dia"]
+    let numero_de_dia_puesto_en_calendario = 1
+    let se_completo_los_dias_del_mes = false
+    inner_table_html = '<tr>\n \
+                    <th>LUN</th>\n \
+                    <th>MAR</th>\n \
+                    <th>MIE</th>\n \
+                    <th>JUE</th>\n \
+                    <th>VIE</th>\n \
+                    <th>SAB</th>\n \
+                    <th>DOM</th>\n \
+                </tr>'  //Se van a agregar las 7 * 6 filas, cada una con su respectivo ID, así como clase
+
+    for (let i = 0; i < 6; i++) {//Las 6 filas agregando 
+        inner_table_html += '<tr>'
+        for(let k = 0; k < 7; k++) { //los 7 días de la semana
+            if (cuando_cae_1er_dia === 0) {
+                inner_table_html += '<td>' + numero_de_dia_puesto_en_calendario + '</td>\n'
+                numero_de_dia_puesto_en_calendario += 1
+            } else if(se_completo_los_dias_del_mes === true) {
+                inner_table_html += '<td>' + numero_de_dia_puesto_en_calendario + '</td>\n'
+                numero_de_dia_puesto_en_calendario += 1
+            }
+            else  {
+                inner_table_html += '<td>' + (cantidad_de_dias_del_mes_anterior - cuando_cae_1er_dia) + '</td>\n'
+                cuando_cae_1er_dia -= 1
+            }
+            if (numero_de_dia_puesto_en_calendario > cantidad_de_dias) {
+                se_completo_los_dias_del_mes = true
+                numero_de_dia_puesto_en_calendario = 1
+            }
+            
+        }
+    inner_table_html += '</tr>'
+    }
+    */
         return res
     }
 

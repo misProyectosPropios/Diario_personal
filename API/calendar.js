@@ -65,7 +65,14 @@ function get_all_weeks_of_month(month, year) {
   let res = []
   cuando_cae_primer_dia = day_of_a_particular_date(1 ,month, year)
   if (cuando_cae_primer_dia !== 0) {
-    
+
   } 
   return res
+}
+
+module.exports = {
+  is_leap_year,
+  how_many_days_have_a_month,
+  day_of_a_particular_date,
+  get_week
 }
