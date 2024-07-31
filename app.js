@@ -180,14 +180,44 @@ const port = 3000
         let res = ''
         calendar.get_week(week, month, year)
         let get_number_of_days_of_month = calendar.how_many_days_have_a_month(month, year)
-        for(let i = 0; i < 7; i++) {
-            //if ()
-        }
+
+        //Varios if y se logra
         return res
     }
 
     function create_calendar_for_day(day, month, year) {
-        let res = ''
-
+        let date = convertFromDateToString(calendar.day_of_a_particular_date(day, month, year))
+        let res = '<tr>' + date + '</tr> \
+                    <td>' + day + '</td>'
         return res
+    }
+
+    function convertFromDateToString(date) {
+        let res = ''
+        switch (date) {
+            case 0:
+                res = 'LUN'
+                break
+            case 1:
+                res = 'MAR'
+                break
+            case 2:
+                res = 'MIE'
+                break
+            case 3:
+                res = 'JUE'
+                break
+            case 4:
+                res = 'VIE'
+                break
+            case 5:
+                res = 'SAB'
+                break
+            case 6:
+                res = 'DOM'
+                break
+            default:
+                res = undefined
+            return res
+        }
     }
