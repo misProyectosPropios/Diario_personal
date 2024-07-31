@@ -2,6 +2,7 @@
 body_parser = require('body-parser')
 const express = require('express')
 const calendar = require('./API/calendar.js')
+const { moveMessagePortToContext } = require('worker_threads')
 //Creation of the server
 const app = express()
 const port = 3000
@@ -61,7 +62,14 @@ const port = 3000
     })  
 
     app.get('/api/week', (req, res) => {
-        res.send(create_calendar_for_week(1,1,1)) //Cambiar
+        if (has_parameter_on_URL(req, 'week') && has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            let week = req.query['week']
+            let month = req.query['month']
+            let year = req.query['year']
+            res.send(create_calendar_for_week(week,month,year))
+        } else {
+            res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
+        }
     })
 
     app.get('/api/month', (req, res) => {
