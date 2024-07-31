@@ -63,10 +63,38 @@ function get_week(date, day, month, year) {
 
 function get_all_weeks_of_month(month, year) {
   let res = []
-  cuando_cae_primer_dia = day_of_a_particular_date(1 ,month, year)
-  if (cuando_cae_primer_dia !== 0) {
+  let previous_month, previous_year, days_on_previous_month
+  let next_month, next_year, days_on_next_month
+  let cuando_cae_primer_dia = day_of_a_particular_date(1 ,month, year)
+  let days_on_month = how_many_days_have_a_month(month, year)
+  if (month === 1) {
+    previous_month = 12
+    previous_year = year - 1
+  } else {
+    previous_month = month - 1
+    previous_year = year
+  }
 
-  } 
+  if (cuando_cae_primer_dia !== 0) {
+    days_on_previous_month = how_many_days_have_a_month(previous_month, previous_year)
+    days_on_previous_month = days_on_previous_month - cuando_cae_primer_dia
+    cuando_cae_primer_dia = 7 - cuando_cae_primer_dia
+    res.push([])
+    res[res.length - 1].push(days_on_previous_month + 1)
+    res[res.length - 1].push(cuando_cae_primer_dia)
+  }
+  while(cuando_cae_primer_dia + 7 <= days_on_month) {
+    res.push([])
+    res[res.length - 1].push(cuando_cae_primer_dia + 1)
+    res[res.length - 1].push(cuando_cae_primer_dia + 7)
+    cuando_cae_primer_dia += 7
+  }
+
+  if (cuando_cae_primer_dia + 7 >= days_on_month && cuando_cae_primer_dia != days_on_month) {
+    res.push([])
+    res[res.length - 1].push(cuando_cae_primer_dia + 1)
+    res[res.length - 1].push(cuando_cae_primer_dia + 7 - days_on_month)
+  }
   return res
 }
 
