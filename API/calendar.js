@@ -57,9 +57,12 @@ function move_n_numbers_modulo_x(number_to_return, number_to_add, modulo) {
   return res;
 }
 
-function get_week(date, day, month, year) {
-
+function get_week(number_of_week, month, year) {
+  week_of_month = get_all_weeks_of_month(month, year)
+  return week_of_month[number_of_week - 1]
 }
+
+console.log(get_week(4, 7,2024))
 
 function get_all_weeks_of_month(month, year) {
   let res = []

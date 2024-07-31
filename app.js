@@ -151,7 +151,7 @@ const port = 3000
             <th>SAB</th>\n \
             <th>DOM</th>\n \
             </tr>' //ONE FOR EACH DAY, STARTING FROM MONDAY (LUNES)
-            
+
         for (let i = 0; i < 6; i++) { //The six rows
             res += '<tr>'
             for(let k = 0; k < 7; k++) { //The 7 columns of the week
@@ -178,7 +178,11 @@ const port = 3000
 
     function create_calendar_for_week(week, month, year) {
         let res = ''
-
+        calendar.get_week(week, month, year)
+        let get_number_of_days_of_month = calendar.how_many_days_have_a_month(month, year)
+        for(let i = 0; i < 7; i++) {
+            //if ()
+        }
         return res
     }
 
