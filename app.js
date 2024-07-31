@@ -58,7 +58,14 @@ const port = 3000
     })
 
     app.get('/api/day', (req, res) => {
-        res.send(create_calendar_for_day(1,1,1)) //Cambiar
+        if (has_parameter_on_URL(req, 'day') && has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            let week = req.query['day']
+            let month = req.query['month']
+            let year = req.query['year']
+            res.send(create_calendar_for_day(day,month,year))
+        } else {
+            res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
+        }
     })  
 
     app.get('/api/week', (req, res) => {
@@ -80,8 +87,6 @@ const port = 3000
         } else {
             res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
         }
-        
-        
     })
 
 //FUNCTIONS
