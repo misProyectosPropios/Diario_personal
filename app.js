@@ -164,6 +164,7 @@ const port = 3000
             month = month - 1
         }
         let days_in_the_previous_month = calendar.how_many_days_have_a_month(month, year)
+        console.log("La cantidad de dias es: " + days_in_the_previous_month)
         
         let number_written_on_calendar = 1
         let is_over_all_days_of_month = false
@@ -188,7 +189,7 @@ const port = 3000
                     number_written_on_calendar += 1
                 }
                 else  {
-                    res += '<td>' + (days_in_the_previous_month - day_of_1st_day) + '</td>\n'
+                    res += '<td>' + (days_in_the_previous_month - day_of_1st_day + 1) + '</td>\n'
                     day_of_1st_day -= 1
                 }
                 if (number_written_on_calendar > days_in_the_month) {
