@@ -125,7 +125,7 @@ const port = 3000
             res += "&day=" + date.getDate();
         }
         if (week === true) {
-            res += "&week" + calendar.get_week(date.getDay(), date.getMonth(), date.getFullYear()); //For calculte this, I need another function, fron congruency and that
+            res += "&week=" + calendar.get_number_of_week(date.getDay(), date.getMonth(), date.getFullYear()); //For calculte this, I need another function, fron congruency and that
         }
         return res
     }

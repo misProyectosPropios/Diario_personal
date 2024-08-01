@@ -31,7 +31,6 @@ async function call_API(path, parameters) {
         console.log("Se devuelve respose " + response)
         res = response
         console.log("Res ahora es: " +res)
-        return "VAMOS RACING"
     })
     return res
 }
@@ -41,18 +40,15 @@ window.onload = async function() {
         let res = await call_API('/api/month', getParameters())
         console.log(res)
         document.getElementById('calendar').innerHTML = res
-        //alert("month")
     } 
     else if (getPathname() === '/week') {
         let res = await call_API('/api/week', getParameters())
         console.log(res)
         document.getElementById('calendar').innerHTML = res
-        //alert('week')
     }
     else if (getPathname() === '/day') {
         let res = await call_API('/api/day', getParameters())
         console.log(res)
         document.getElementById('calendar').innerHTML = res
-        //alert('day')
     }
 }
