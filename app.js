@@ -189,36 +189,42 @@ const port = 3000
         return res
     }
 
-    function create_calendar_for_week(week, month, year) {
-        let res = '<tr>'
+    //Week starts at 1, and the maximium is 6
+    function create_calendar_for_week(week, month, year) { 
+        let res = '<tr> \n'
         let cambiar_variable = false
-        calendar.get_week(week, month, year)
-        let get_number_of_days_of_month = calendar.how_many_days_have_a_month(month, year)
-        if (get_number_of_days_of_month[0] > get_number_of_days_of_month[1]) { //Puede ser 0 o el ultimo
-            let difference_between_days = Math.abs(get_number_of_days_of_month[1] - get_number_of_days_of_month[0])
-            let number = get_number_of_days_of_month[0]
-            for(let i = 0; i < 7; i++) {
-                if (cambiar_variable === false && number > difference_between_days) {
-                    number = 1
+        let from_day_to_day = calendar.get_week(week, month, year)
+
+        if (from_day_to_day[0] > from_day_to_day[1]) { //It could be 0 or the last one
+            console.log('\nSe llego al lugar 1\n')
+            let difference_between_days = Math.abs(from_day_to_day[1] - from_day_to_day[0])
+            let when_to_change_to_another_month = from_day_to_day[0] + (7 - from_day_to_day[1])
+            let day = from_day_to_day[0]
+            for(let i = 0, j = 0; i < 7; i++) {
+                if (cambiar_variable === false && day >= when_to_change_to_another_month) {
+                    day = 1
+                    cambiar_variable = true
                 }
-                res += '<td>'
-                res += number
-                res += '</td>'
+                res += '\t<td>\n'
+                res += '\t\t' + day + "\n"
+                res += '\t</td> \n'
+                day ++
             }
         } else { //Its on the middle
-            let number = get_number_of_days_of_month[0]
+            let day = from_day_to_day[0]
+            console.log('\nSe llego al lugar 2\n')
             for(let i = 0; i < 7; i++) {
-                res += '<td>'
-                res += number
-                res += '</td>'
-                number++
+                res += '\t<td>\n'
+                res += '\t\t' + day + '\n'
+                res += '\t</td>\n'
+                day++
             }
         }
-
-        res += '</tr>'
-        //Varios if y se logra
+        res += '</tr>\n'
         return res
     }
+
+    console.log(create_calendar_for_week(1, 10, 2024))
 
     function create_calendar_for_day(day, month, year) {
         let date = convertFromDateToString(calendar.day_of_a_particular_date(day, month, year))
