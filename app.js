@@ -62,7 +62,11 @@ const port = 3000
             let day = req.query['day']
             let month = req.query['month']
             let year = req.query['year']
-            res.send(create_calendar_for_day(day,month,year))
+            if (calendar.is_valid_day_month_and_year(day, month, year)) {
+                res.send(create_calendar_for_day(day,month,year))
+            } else {
+                res.status(404).send("ERROR. ARGUMENTs ARE NOT A VALID DATE")
+            }
         } else {
             res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
         }
@@ -83,7 +87,12 @@ const port = 3000
         if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
             let month = req.query['month']
             let year = req.query['year']
-            res.send(create_calendar_for_month(month, year))
+            if (calendar.is_valid_month_and_year(month, year)) {
+                res.send(create_calendar_for_month(month, year))
+            } else {
+                res.status(404).send("ERROR. ARGUMENTs ARE NOT A VALID DATE")
+            }
+            
         } else {
             res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
         }
