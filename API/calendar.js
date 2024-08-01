@@ -73,6 +73,11 @@ function get_week(day, month, year) {
   return res
 }
 
+function get_number_of_week(week, month, year) {
+  semanas_en_mes = get_all_weeks_of_month(month, year)
+  return semanas_en_mes[week - 1]
+}
+
 function get_all_weeks_of_month(month, year) {
   let res = []
   let previous_month, previous_year, days_on_previous_month
@@ -114,5 +119,6 @@ module.exports = {
   is_leap_year,
   how_many_days_have_a_month,
   day_of_a_particular_date,
-  get_week
+  get_week,
+  get_number_of_week
 }
