@@ -57,9 +57,20 @@ function move_n_numbers_modulo_x(number_to_return, number_to_add, modulo) {
   return res;
 }
 
-function get_week(number_of_week, month, year) {
-  week_of_month = get_all_weeks_of_month(month, year)
-  return week_of_month[number_of_week - 1]
+function get_week(day, month, year) {
+  let res = []
+  semanas_en_mes = get_all_weeks_of_month(month, year)
+  semanas_en_mes.forEach(array_de_fechas => {
+    if (day >= array_de_fechas[0] && day <= array_de_fechas[1]) {
+      res = array_de_fechas
+      console.log(array_de_fechas)
+    }
+  })
+  if (res.length === 0) {
+    res = semanas_en_mes[semanas_en_mes.length - 1]
+    console.log(res)
+  }
+  return res
 }
 
 function get_all_weeks_of_month(month, year) {

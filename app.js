@@ -40,7 +40,7 @@ const port = 3000
         if (has_parameter_on_URL(req, 'week') && has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
             res.sendFile(__dirname + '/views/calendar.html')
         } else {
-            redirect_with_parameters('/day', res)
+            redirect_with_parameters('/week', res)
         }
     })
 
@@ -125,7 +125,7 @@ const port = 3000
             res += "&day=" + date.getDate();
         }
         if (week === true) {
-            res += "&week" + date.get_week(date.getDate(), date.getDay()); //For calculte this, I need another function, fron congruency and that
+            res += "&week" + calendar.get_week(date.getDay(), date.getMonth(), date.getFullYear()); //For calculte this, I need another function, fron congruency and that
         }
         return res
     }
@@ -190,21 +190,43 @@ const port = 3000
     }
 
     function create_calendar_for_week(week, month, year) {
-        let res = ''
+        let res = '<tr>'
+        let cambiar_variable = false
         calendar.get_week(week, month, year)
         let get_number_of_days_of_month = calendar.how_many_days_have_a_month(month, year)
+        if (get_number_of_days_of_month[0] > get_number_of_days_of_month[1]) { //Puede ser 0 o el ultimo
+            let difference_between_days = Math.abs(get_number_of_days_of_month[1] - get_number_of_days_of_month[0])
+            let number = get_number_of_days_of_month[0]
+            for(let i = 0; i < 7; i++) {
+                if (cambiar_variable === false && number > difference_between_days) {
+                    number = 1
+                }
+                res += '<td>'
+                res += number
+                res += '</td>'
+            }
+        } else { //Its on the middle
+            let number = get_number_of_days_of_month[0]
+            for(let i = 0; i < 7; i++) {
+                res += '<td>'
+                res += number
+                res += '</td>'
+                number++
+            }
+        }
 
+        res += '</tr>'
         //Varios if y se logra
         return res
     }
 
     function create_calendar_for_day(day, month, year) {
         let date = convertFromDateToString(calendar.day_of_a_particular_date(day, month, year))
-        let res = '<tr> \
-                        <td>' + date + '</td> \
-                    </tr> \
-                    <tr> \
-                        <td>' + day + '</td> \
+        let res = '<tr>                         \
+                        <td>' + date + '</td>   \
+                    </tr>                       \
+                    <tr>                        \
+                        <td>' + day + '</td>    \
                     </tr>' 
         return res
     }
