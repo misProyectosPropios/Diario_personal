@@ -62,8 +62,6 @@ function get_week(number_of_week, month, year) {
   return week_of_month[number_of_week - 1]
 }
 
-console.log(get_week(4, 7,2024))
-
 function get_all_weeks_of_month(month, year) {
   let res = []
   let previous_month, previous_year, days_on_previous_month

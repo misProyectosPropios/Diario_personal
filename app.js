@@ -59,7 +59,7 @@ const port = 3000
 
     app.get('/api/day', (req, res) => {
         if (has_parameter_on_URL(req, 'day') && has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
-            let week = req.query['day']
+            let day = req.query['day']
             let month = req.query['month']
             let year = req.query['year']
             res.send(create_calendar_for_day(day,month,year))
@@ -134,7 +134,7 @@ const port = 3000
 
     function has_parameter_on_URL(req, parameter_name) {
         let res = true
-        console.log(parameter_name)
+        //console.log(parameter_name)
         if (req.query[parameter_name] === undefined) {
             res = false
         } 
@@ -200,8 +200,12 @@ const port = 3000
 
     function create_calendar_for_day(day, month, year) {
         let date = convertFromDateToString(calendar.day_of_a_particular_date(day, month, year))
-        let res = '<tr>' + date + '</tr> \
-                    <td>' + day + '</td>'
+        let res = '<tr> \
+                        <td>' + date + '</td> \
+                    </tr> \
+                    <tr> \
+                        <td>' + day + '</td> \
+                    </tr>' 
         return res
     }
 
@@ -231,6 +235,8 @@ const port = 3000
                 break
             default:
                 res = undefined
-            return res
+                break;
+            
         }
+        return res
     }

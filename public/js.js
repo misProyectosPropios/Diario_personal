@@ -44,9 +44,15 @@ window.onload = async function() {
         //alert("month")
     } 
     else if (getPathname() === '/week') {
+        let res = await call_API('/api/week', getParameters())
+        console.log(res)
+        document.getElementById('calendar').innerHTML = res
         //alert('week')
     }
     else if (getPathname() === '/day') {
+        let res = await call_API('/api/day', getParameters())
+        console.log(res)
+        document.getElementById('calendar').innerHTML = res
         //alert('day')
     }
 }
