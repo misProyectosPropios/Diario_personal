@@ -119,16 +119,22 @@ function get_all_weeks_of_month(month, year) {
 function is_valid_day_month_and_year(day, month, year) {
   let res = false
   let date = new Date(year, month, day)
-  if (year === date.getFullYear() && month === date.getMonth() && month.getDate()) {
+  console.log(day, date.getUTCDate())
+  console.log(month, date.getUTCMonth())
+  console.log(year, date.getUTCFullYear())
+  console.log(typeof date.getUTCFullYear())
+  console.log(typeof year)
+  if (parseInt(year) === date.getUTCFullYear() && parseInt(month) === date.getUTCMonth() && date.getUTCDate() === parseInt(day)) {
     res = true
   }
+  console.log(res)
   return res
 }
 
 function is_valid_month_and_year(month, year) {
   let res = false
   let date = new Date(year, month)
-  if (year === date.getFullYear() && month === date.getMonth()) {
+  if (parseInt(year) === date.getUTCFullYear() && parseInt(month) === date.getUTCMonth()) {
     res = true
   }
   return res
@@ -155,7 +161,7 @@ function is_valid_week_month_and_year(week, month, year) {
   //console.log(date.getFullYear(), date.getMonth())
   //console.log(year, month)
   //console.log(year == date.getUTCFullYear())
-  if (year === date.getUTCFullYear() && month === date.getUTCMonth() && week >= 1 && week <= rows_that_takes) {
+  if (parseInt(year) === date.getUTCFullYear() && parseInt(month) === date.getUTCMonth() && parseInt(week) >= 1 && parseInt(week) <= rows_that_takes) {
     res = true
   }
   return res

@@ -48,7 +48,7 @@ const port = 3000
         if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
             res.sendFile(__dirname + '/views/calendar.html')
         } else {
-            redirect_with_parameters('/day', res)
+            redirect_with_parameters('/month', res)
         }
     })
 
