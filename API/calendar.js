@@ -116,10 +116,32 @@ function get_all_weeks_of_month(month, year) {
   return res
 }
 
+function is_valid_day_month_and_year(day, month, year) {
+  let res = false
+  let date = new Date(year, month, day)
+  if (year === date.getFullYear() && month === date.getMonth() && month.getDate()) {
+    res = true
+  }
+  return res
+}
+
+function is_valid_month_and_year(month, year) {
+  let res = false
+  let date = new Date(year, month)
+  if (year === date.getFullYear() && month === date.getMonth()) {
+    res = true
+  }
+  return res
+}
+
+console.log(is_valid_month_and_year(14, 2023))
+
 module.exports = {
   is_leap_year,
   how_many_days_have_a_month,
   day_of_a_particular_date,
   get_week,
-  get_number_of_week
+  get_number_of_week,
+  is_valid_day_month_and_year,
+  is_valid_month_and_year
 }

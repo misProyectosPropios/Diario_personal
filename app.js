@@ -134,7 +134,6 @@ const port = 3000
 
     function has_parameter_on_URL(req, parameter_name) {
         let res = true
-        //console.log(parameter_name)
         if (req.query[parameter_name] === undefined) {
             res = false
         } 
@@ -191,12 +190,20 @@ const port = 3000
 
     //Week starts at 1, and the maximium is 6
     function create_calendar_for_week(week, month, year) { 
-        let res = '<tr> \n'
+        let res ='<tr>\n \
+            <th>LUN</th>\n \
+            <th>MAR</th>\n \
+            <th>MIE</th>\n \
+            <th>JUE</th>\n \
+            <th>VIE</th>\n \
+            <th>SAB</th>\n \
+            <th>DOM</th>\n \
+            </tr> \n       \
+            <tr> \n'
         let cambiar_variable = false
         let from_day_to_day = calendar.get_week(week, month, year)
 
         if (from_day_to_day[0] > from_day_to_day[1]) { //It could be 0 or the last one
-            console.log('\nSe llego al lugar 1\n')
             let difference_between_days = Math.abs(from_day_to_day[1] - from_day_to_day[0])
             let when_to_change_to_another_month = from_day_to_day[0] + (7 - from_day_to_day[1])
             let day = from_day_to_day[0]
@@ -212,7 +219,6 @@ const port = 3000
             }
         } else { //Its on the middle
             let day = from_day_to_day[0]
-            console.log('\nSe llego al lugar 2\n')
             for(let i = 0; i < 7; i++) {
                 res += '\t<td>\n'
                 res += '\t\t' + day + '\n'
@@ -224,7 +230,6 @@ const port = 3000
         return res
     }
 
-    console.log(create_calendar_for_week(1, 10, 2024))
 
     function create_calendar_for_day(day, month, year) {
         let date = convertFromDateToString(calendar.day_of_a_particular_date(day, month, year))
