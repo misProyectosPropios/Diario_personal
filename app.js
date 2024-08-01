@@ -2,7 +2,6 @@
 body_parser = require('body-parser')
 const express = require('express')
 const calendar = require('./API/calendar.js')
-const { moveMessagePortToContext } = require('worker_threads')
 //Creation of the server
 const app = express()
 const port = 3000
@@ -77,7 +76,12 @@ const port = 3000
             let week = req.query['week']
             let month = req.query['month']
             let year = req.query['year']
-            res.send(create_calendar_for_week(week,month,year))
+            console.log(week, month, year)
+            if (calendar.is_valid_week_month_and_year(week, month, year)) {
+                res.send(create_calendar_for_week(week,month,year))
+            } else {
+                res.status(404).send("ERROR. ARGUMENTs ARE NOT A VALID DATE")
+            }
         } else {
             res.status(404).send("ERROR. NOT NECCESARY ARGUMENTSs")
         }

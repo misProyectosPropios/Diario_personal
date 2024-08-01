@@ -134,7 +134,32 @@ function is_valid_month_and_year(month, year) {
   return res
 }
 
-console.log(is_valid_month_and_year(14, 2023))
+function how_many_rows_take(cantidad_de_dias, dia_en_que_empieza) {
+  let res = Math.trunc(cantidad_de_dias / 7)
+  let dias_que_faltan_acomodar = cantidad_de_dias % 7
+  let suma_de_dias_sin_acomodar = dias_que_faltan_acomodar + dia_en_que_empieza
+  //Suma de dias sin acomodar a lo sumo es 12, por lo que me fijo en dos casos importantes, si es <= 7 o lo contrario
+  if (suma_de_dias_sin_acomodar <= 7) {
+    res += 1
+  } else {
+    res += 2
+  }
+  return res
+}
+
+function is_valid_week_month_and_year(week, month, year) {
+  let res = false
+  let date = new Date(year, month)
+  let rows_that_takes = how_many_rows_take(how_many_days_have_a_month(month, year), day_of_a_particular_date(1, month, year))
+  //console.log("The rows that takes are: " + rows_that_takes)
+  //console.log(date.getFullYear(), date.getMonth())
+  //console.log(year, month)
+  //console.log(year == date.getUTCFullYear())
+  if (year === date.getUTCFullYear() && month === date.getUTCMonth() && week >= 1 && week <= rows_that_takes) {
+    res = true
+  }
+  return res
+}
 
 module.exports = {
   is_leap_year,
@@ -143,5 +168,6 @@ module.exports = {
   get_week,
   get_number_of_week,
   is_valid_day_month_and_year,
-  is_valid_month_and_year
+  is_valid_month_and_year,
+  is_valid_week_month_and_year
 }
