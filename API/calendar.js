@@ -117,6 +117,7 @@ function get_all_weeks_of_month(month, year) {
 }
 
 function is_valid_day_month_and_year(day, month, year) {
+  month = month - 1
   let res = false
   let date = new Date(year, month, day)
   console.log(day, date.getUTCDate())
@@ -132,6 +133,7 @@ function is_valid_day_month_and_year(day, month, year) {
 }
 
 function is_valid_month_and_year(month, year) {
+  month = month - 1
   let res = false
   let date = new Date(year, month)
   if (parseInt(year) === date.getUTCFullYear() && parseInt(month) === date.getUTCMonth()) {
@@ -154,6 +156,7 @@ function how_many_rows_take(cantidad_de_dias, dia_en_que_empieza) {
 }
 
 function is_valid_week_month_and_year(week, month, year) {
+  month = month - 1
   let res = false
   let date = new Date(year, month)
   let rows_that_takes = how_many_rows_take(how_many_days_have_a_month(month, year), day_of_a_particular_date(1, month, year))
