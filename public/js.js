@@ -65,7 +65,7 @@ function create_information_to_panel(day, month, year) {
         res += '<li class="informacion kenit-regular">Day: ' + day + '</li> \n'
     }
     res += '<li class="informacion kenit-regular">Month:' + month + '</li> \n'
-    res += '<li class="informacion kenit-regular">Year' + year + '</li> \n'
+    res += '<li class="informacion kenit-regular">Year: ' + year + '</li> \n'
     console.log(res)
     return res
 }

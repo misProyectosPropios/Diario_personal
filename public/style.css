@@ -13,7 +13,6 @@ body {
 nav {
     display: flex;
     margin: 0 0;
-    margin-bottom: 2vh;
     justify-content: flex-end;
     padding: 0;
     line-height: 8vh;
@@ -28,6 +27,27 @@ nav ol {
 
 nav ol li {
     display: inline;
+    background-color: red;
+    padding: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0 10px;
+}
+
+nav ol li:hover a{
+    color: rgb(150, 150, 150)
+}
+
+nav ol li a{
+    text-decoration: none;
+    color: rgb(50, 50, 50)
+}
+
+nav ol li a:hover{
+    text-decoration: none;
+    color: rgb(200, 200, 200)
 }
 
 .flex {
@@ -35,7 +55,7 @@ nav ol li {
     align-items: flex-end;
     justify-content: space-between;
     align-content:stretch;
-    height: 90vh;
+    height: 92vh;
 }
 
 .left_panel {
@@ -77,6 +97,19 @@ th {
 
 .information-title {
     text-align: center;
+    margin: 0;
+    margin-top: 4px;
+}
+
+#information {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+#information li {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 /* FONTS */
