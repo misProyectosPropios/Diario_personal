@@ -54,7 +54,8 @@ nav ol li {
 
 th {
     padding: 0;
-    line-height: 0.7;
+    line-height: 0.26;
+    font-size: 1.4rem;
 }
 
 th, td {
