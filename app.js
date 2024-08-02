@@ -6,6 +6,16 @@ const calendar = require('./API/calendar.js')
 const app = express()
 const port = 3000
 
+const row_name_of_days = '<tr>\n \
+            <th class="ubuntu-bold">LUN</th>\n \
+            <th class="ubuntu-bold">MAR</th>\n \
+            <th class="ubuntu-bold">MIE</th>\n \
+            <th class="ubuntu-bold">JUE</th>\n \
+            <th class="ubuntu-bold">VIE</th>\n \
+            <th class="ubuntu-bold">SAB</th>\n \
+            <th class="ubuntu-bold">DOM</th>\n \
+            </tr>'
+
 //Middleware
     app.use(body_parser.urlencoded({ extended: false })) //Para poder acceder a los parametros con POST, por medio del req.body[nombre_del-parametro]
 
@@ -168,15 +178,7 @@ const port = 3000
         
         let number_written_on_calendar = 1
         let is_over_all_days_of_month = false
-        let res ='<tr>\n \
-            <th>LUN</th>\n \
-            <th>MAR</th>\n \
-            <th>MIE</th>\n \
-            <th>JUE</th>\n \
-            <th>VIE</th>\n \
-            <th>SAB</th>\n \
-            <th>DOM</th>\n \
-            </tr>' //ONE FOR EACH DAY, STARTING FROM MONDAY (LUNES)
+        let res = row_name_of_days
 
         for (let i = 0; i < 6; i++) { //The six rows
             res += '<tr>'
@@ -205,16 +207,7 @@ const port = 3000
 
     //Week starts at 1, and the maximium is 6
     function create_calendar_for_week(week, month, year) { 
-        let res ='<tr>\n \
-            <th>LUN</th>\n \
-            <th>MAR</th>\n \
-            <th>MIE</th>\n \
-            <th>JUE</th>\n \
-            <th>VIE</th>\n \
-            <th>SAB</th>\n \
-            <th>DOM</th>\n \
-            </tr> \n       \
-            <tr> \n'
+        let res = row_name_of_days + '<tr> \n'
         let cambiar_variable = false
         let from_day_to_day = calendar.get_week(week, month, year)
 
