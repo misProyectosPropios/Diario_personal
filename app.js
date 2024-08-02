@@ -7,13 +7,13 @@ const app = express()
 const port = 3000
 
 const row_name_of_days = '<tr>\n \
-            <th class="ubuntu-bold">LUN</th>\n \
-            <th class="ubuntu-bold">MAR</th>\n \
-            <th class="ubuntu-bold">MIE</th>\n \
-            <th class="ubuntu-bold">JUE</th>\n \
-            <th class="ubuntu-bold">VIE</th>\n \
-            <th class="ubuntu-bold">SAB</th>\n \
-            <th class="ubuntu-bold">DOM</th>\n \
+            <th class="kanit-extrabold">LUN</th>\n \
+            <th class="kanit-extrabold">MAR</th>\n \
+            <th class="kanit-extrabold">MIE</th>\n \
+            <th class="kanit-extrabold">JUE</th>\n \
+            <th class="kanit-extrabold">VIE</th>\n \
+            <th class="kanit-extrabold">SAB</th>\n \
+            <th class="kanit-extrabold">DOM</th>\n \
             </tr>'
 
 //Middleware
