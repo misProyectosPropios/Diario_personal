@@ -185,11 +185,11 @@ const port = 3000
                     res += '<td>' + number_written_on_calendar + '</td>\n'
                     number_written_on_calendar += 1
                 } else if(is_over_all_days_of_month === true) {
-                    res += '<td>' + number_written_on_calendar + '</td>\n'
+                    res += '<td >' + number_written_on_calendar + '</td>\n'
                     number_written_on_calendar += 1
                 }
                 else  {
-                    res += '<td>' + (days_in_the_previous_month - day_of_1st_day + 1) + '</td>\n'
+                    res += '<td class="ubuntu-light">' + (days_in_the_previous_month - day_of_1st_day + 1) + '</td>\n'
                     day_of_1st_day -= 1
                 }
                 if (number_written_on_calendar > days_in_the_month) {
