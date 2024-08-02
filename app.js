@@ -181,13 +181,14 @@ const port = 3000
         for (let i = 0; i < 6; i++) { //The six rows
             res += '<tr>'
             for(let k = 0; k < 7; k++) { //The 7 columns of the week
-                if (day_of_1st_day === 0) {
-                    res += '<td>' + number_written_on_calendar + '</td>\n'
-                    number_written_on_calendar += 1
-                } else if(is_over_all_days_of_month === true) {
-                    res += '<td >' + number_written_on_calendar + '</td>\n'
+                if(is_over_all_days_of_month === true) {
+                    res += '<td class="ubuntu-light">' + number_written_on_calendar + '</td>\n'
                     number_written_on_calendar += 1
                 }
+                else if (day_of_1st_day === 0) {
+                    res += '<td>' + number_written_on_calendar + '</td>\n'
+                    number_written_on_calendar += 1
+                }  
                 else  {
                     res += '<td class="ubuntu-light">' + (days_in_the_previous_month - day_of_1st_day + 1) + '</td>\n'
                     day_of_1st_day -= 1
