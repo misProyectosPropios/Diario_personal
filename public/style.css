@@ -46,6 +46,11 @@ nav ol li {
     background-color: #EAF2D7;
 }
 
+th {
+    padding: 0;
+    line-height: 0.7;
+}
+
 th, td {
     border: 1px solid rgba(177, 175, 255, 0.7);
 }
