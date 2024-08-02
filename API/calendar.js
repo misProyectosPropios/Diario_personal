@@ -69,7 +69,7 @@ function get_number_of_week(day, month, year) {
   })
   if (res.length === 0) {
     res = semanas_en_mes.length - 1
-    console.log(res)
+    //console.log(res)
   }
   return res
 }
@@ -120,15 +120,15 @@ function is_valid_day_month_and_year(day, month, year) {
   month = month - 1
   let res = false
   let date = new Date(year, month, day)
-  console.log(day, date.getUTCDate())
-  console.log(month, date.getUTCMonth())
-  console.log(year, date.getUTCFullYear())
-  console.log(typeof date.getUTCFullYear())
-  console.log(typeof year)
+  //console.log(day, date.getUTCDate())
+  //console.log(month, date.getUTCMonth())
+  //console.log(year, date.getUTCFullYear())
+  //console.log(typeof date.getUTCFullYear())
+  //console.log(typeof year)
   if (parseInt(year) === date.getUTCFullYear() && parseInt(month) === date.getUTCMonth() && date.getUTCDate() === parseInt(day)) {
     res = true
   }
-  console.log(res)
+  //console.log(res)
   return res
 }
 
