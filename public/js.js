@@ -66,6 +66,10 @@ window.onload = async function() {
     document.getElementById(id_information_left_panel).innerHTML += create_buttons_to_move_forward_and_back()
 }
 
+
+
+
+
 function create_information_to_panel(day, month, year) {
     let res = ''
     if (day !== 0) {
@@ -80,11 +84,37 @@ function create_information_to_panel(day, month, year) {
 
 function create_buttons_to_move_forward_and_back() {
     let res = '<h3>MOVE</h3>                         \
-                <button><-</button>               \
-                <button>-></button>'
+                <button onclick="moveForward()"><-</button>               \
+                <button onclick="moveNext()">-></button>'
     return res
 }
 
+function moveBack() {
+    /* 
+    let date = new Date()
+    let previous_month, previous_year, previous_week, previous_day
+    if (getPathname() === '/month') {
+        if (date.getMonth() === 0) {
+            previous_month = 12
+            previous_year = date.getFullYear() - 1
+        } else {
+            previous_month = date.getMonth() + 1
+            previous_year = date.getFullYear()
+        }
+        location.href = getURL() + "?month=" + previous_month + "&year"
+    }
+    else if (getPathname() === '/week') {
+        if (getParameterByName('week') === '1' && getParameterByName('month') === '1') {
+            previous_year = 
+        }
+    }
+        *///Son muchas condiciones boludo q paja
+    
+}
+
+function moveForward() {
+    console.log("DE PENDEJO TE SIGO")
+}
 
 function create_selection_mode(year) {
     let res =  '<h3>SELECT FORM OF DATA</h3>                                 \
