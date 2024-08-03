@@ -61,14 +61,15 @@ window.onload = async function() {
         document.getElementById('calendar').innerHTML = res
         document.getElementById(id_information_left_panel).innerHTML = create_information_to_panel(getParameterByName('day'),getParameterByName('month'), getParameterByName('year'))
     }
-    document.getElementById(id_information_left_panel).innerHTML += create_selection_mode()
+    let date = new Date()
+    document.getElementById(id_information_left_panel).innerHTML += create_selection_mode(date.getFullYear())
     document.getElementById(id_information_left_panel).innerHTML += create_buttons_to_move_forward_and_back()
 }
 
 function create_information_to_panel(day, month, year) {
     let res = ''
     if (day !== 0) {
-        res += '<li class="informacion kenit-regular">Day: ' + day + '</li> \n'
+        res += '<li class="informacion kenit-regular">Day/Week: ' + day + '</li> \n'
     }
     res += '<li class="informacion kenit-regular">Month:' + month + '</li> \n'
     res += '<li class="informacion kenit-regular">Year: ' + year + '</li> \n'
@@ -76,26 +77,6 @@ function create_information_to_panel(day, month, year) {
     return res
 }
 
-function create_selection_mode() {
-    let res =  '<form>              \
-                    <input type="radio" name="type_of_day">DAY        \
-                    <input type="radio" name="type_of_day">MONTH      \
-                    <input type="radio" name="type_of_day">YEAR       \
-                </form>'
-    return res
-}
-
-
-function create_information_to_panel(day, month, year) {
-    let res = ''
-    if (day !== 0) {
-        res += '<li class="informacion kenit-regular">Day: ' + day + '</li> \n'
-    }
-    res += '<li class="informacion kenit-regular">Month:' + month + '</li> \n'
-    res += '<li class="informacion kenit-regular">Year: ' + year + '</li> \n'
-    console.log(res)
-    return res
-}
 
 function create_buttons_to_move_forward_and_back() {
     let res = '<h3>MOVE</h3>                         \
@@ -105,12 +86,24 @@ function create_buttons_to_move_forward_and_back() {
 }
 
 
-function create_selection_mode() {
+function create_selection_mode(year) {
     let res =  '<h3>SELECT FORM OF DATA</h3>                                 \
                 <form>                                                       \
                     <p><input type="radio" name="type_of_day">DAY   </p>     \
+                    <p><input type="radio" name="type_of_day">WEEK  </p>     \
                     <p><input type="radio" name="type_of_day">MONTH </p>     \
-                    <p><input type="radio" name="type_of_day">YEAR  </p>     \
+                    <br/>                                                    \
+                    <select name="days" id="selection_days">                 \
+                    </select>                                                \
+                    <input type="number" value="' + year + '"/>                                  \
+                    </select>                                                \
+                    <select name="months" id="months">                       '
+
+    for(let i = 1; i <= 12; i++) {
+        res += '<option value="' + i + '">' + i + '</option>'
+    }
+
+    res += '        </select> \
                 </form>'
     return res
 }
