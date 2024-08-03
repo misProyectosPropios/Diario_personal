@@ -6,6 +6,16 @@ const calendar = require('./API/calendar.js')
 const app = express()
 const port = 3000
 
+const row_name_of_days = '<tr>\n \
+            <th class="kanit-extrabold">LUN</th>\n \
+            <th class="kanit-extrabold">MAR</th>\n \
+            <th class="kanit-extrabold">MIE</th>\n \
+            <th class="kanit-extrabold">JUE</th>\n \
+            <th class="kanit-extrabold">VIE</th>\n \
+            <th class="kanit-extrabold">SAB</th>\n \
+            <th class="kanit-extrabold">DOM</th>\n \
+            </tr>'
+
 //Middleware
     app.use(body_parser.urlencoded({ extended: false })) //Para poder acceder a los parametros con POST, por medio del req.body[nombre_del-parametro]
 
@@ -168,28 +178,21 @@ const port = 3000
         
         let number_written_on_calendar = 1
         let is_over_all_days_of_month = false
-        let res ='<tr>\n \
-            <th>LUN</th>\n \
-            <th>MAR</th>\n \
-            <th>MIE</th>\n \
-            <th>JUE</th>\n \
-            <th>VIE</th>\n \
-            <th>SAB</th>\n \
-            <th>DOM</th>\n \
-            </tr>' //ONE FOR EACH DAY, STARTING FROM MONDAY (LUNES)
+        let res = row_name_of_days
 
         for (let i = 0; i < 6; i++) { //The six rows
             res += '<tr>'
             for(let k = 0; k < 7; k++) { //The 7 columns of the week
-                if (day_of_1st_day === 0) {
-                    res += '<td>' + number_written_on_calendar + '</td>\n'
-                    number_written_on_calendar += 1
-                } else if(is_over_all_days_of_month === true) {
-                    res += '<td>' + number_written_on_calendar + '</td>\n'
+                if(is_over_all_days_of_month === true) {
+                    res += '<td class="ubuntu-light">' + number_written_on_calendar + '</td>\n'
                     number_written_on_calendar += 1
                 }
+                else if (day_of_1st_day === 0) {
+                    res += '<td>' + number_written_on_calendar + '</td>\n'
+                    number_written_on_calendar += 1
+                }  
                 else  {
-                    res += '<td>' + (days_in_the_previous_month - day_of_1st_day + 1) + '</td>\n'
+                    res += '<td class="ubuntu-light">' + (days_in_the_previous_month - day_of_1st_day + 1) + '</td>\n'
                     day_of_1st_day -= 1
                 }
                 if (number_written_on_calendar > days_in_the_month) {
@@ -204,16 +207,7 @@ const port = 3000
 
     //Week starts at 1, and the maximium is 6
     function create_calendar_for_week(week, month, year) { 
-        let res ='<tr>\n \
-            <th>LUN</th>\n \
-            <th>MAR</th>\n \
-            <th>MIE</th>\n \
-            <th>JUE</th>\n \
-            <th>VIE</th>\n \
-            <th>SAB</th>\n \
-            <th>DOM</th>\n \
-            </tr> \n       \
-            <tr> \n'
+        let res = row_name_of_days + '<tr> \n'
         let cambiar_variable = false
         let from_day_to_day = calendar.get_week(week, month, year)
 
