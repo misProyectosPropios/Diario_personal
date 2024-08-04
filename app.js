@@ -112,6 +112,31 @@ const row_name_of_days = '<tr>\n \
         }
     })
 
+    app.get('/api/how_many_days_have_a_month', (req, res) => {
+        if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            let month = req.query['month']
+            let year = req.query['year']
+            res.send(calendar.how_many_days_have_a_month(month, year).toString())
+        } else {
+            res.status(404).send("404: PAGE NOT FOUND")
+        }
+    })
+    
+    app.get('/api/how_many_rows_take', (req, res) => {
+        if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            let month = req.query['month']
+            let year = req.query['year']
+            let cant_days = calendar.how_many_days_have_a_month(month, year)
+            let date_when_starts_the_month = calendar.day_of_a_particular_date(1, month, year)
+            let cantidad_dias = calendar.how_many_rows_take(cant_days, date_when_starts_the_month)
+            console.log(cantidad_dias)
+            res.send(cantidad_dias.toString())
+           // res.send(calendar.how_many_rows_take(cant_days, date_when_starts_the_month))
+        } else {
+            res.status(404).send("404: PAGE NOT FOUND")
+        }
+    })
+
 //FUNCTIONS
 
     function redirect_with_parameters(path, res) {
@@ -148,7 +173,7 @@ const row_name_of_days = '<tr>\n \
             res += "&day=" + date.getDate();
         }
         if (week === true) {
-            res += "&week=" + calendar.get_number_of_week(date.getDay(), date.getMonth(), date.getFullYear()); //For calculte this, I need another function, fron congruency and that
+            res += "&week=" + calendar.get_number_of_week(date.getDate(), date.getMonth(), date.getFullYear()); //For calculte this, I need another function, fron congruency and that
         }
         return res
     }

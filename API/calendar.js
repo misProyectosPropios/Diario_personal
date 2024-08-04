@@ -61,10 +61,15 @@ function get_number_of_week(day, month, year) {
   let res = []
   let i = 0
   semanas_en_mes = get_all_weeks_of_month(month, year)
+  console.log("Dia, mes, año")
+  console.log(day, month, year)
+  console.log("Aca se muestra el array de fechas: ")
   semanas_en_mes.forEach(array_de_fechas => {
+    console.log(array_de_fechas)
     i++
     if (day >= array_de_fechas[0] && day <= array_de_fechas[1]) {
       res = i
+      console.log("Hola")
     }
   })
   if (res.length === 0) {
@@ -178,5 +183,6 @@ module.exports = {
   get_number_of_week,
   is_valid_day_month_and_year,
   is_valid_month_and_year,
-  is_valid_week_month_and_year
+  is_valid_week_month_and_year,
+  how_many_rows_take
 }

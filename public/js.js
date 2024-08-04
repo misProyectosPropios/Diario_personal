@@ -41,6 +41,22 @@ async function call_API(path, parameters) {
     return res
 }
 
+/*
+async function call_API_post(path, parameters) {
+    let answer
+    var data = new FormData();
+    data.append( "json", JSON.stringify( parameters ) );
+
+    fetch(path,
+    {
+        method: "POST",
+        body: data
+    })
+    .then(function(res){ console.log(res); })
+    //.then(function(data){ alert( JSON.stringify( data ) ) })
+}
+    */
+
 window.onload = async function() {
     if (getPathname() === '/month') {
         let res = await call_API('/api/month', getParameters())
@@ -62,7 +78,7 @@ window.onload = async function() {
         document.getElementById(id_information_left_panel).innerHTML = create_information_to_panel(getParameterByName('day'),getParameterByName('month'), getParameterByName('year'))
     }
     let date = new Date()
-    document.getElementById(id_information_left_panel).innerHTML += create_selection_mode(date.getFullYear())
+    //document.getElementById(id_information_left_panel).innerHTML += create_selection_mode(date.getFullYear())
     document.getElementById(id_information_left_panel).innerHTML += create_buttons_to_move_forward_and_back()
 }
 
@@ -84,12 +100,66 @@ function create_information_to_panel(day, month, year) {
 
 function create_buttons_to_move_forward_and_back() {
     let res = '<h3>MOVE</h3>                         \
-                <button onclick="moveForward()"><-</button>               \
+                <button onclick="moveBack()"><-</button>               \
                 <button onclick="moveNext()">-></button>'
     return res
 }
 
-function moveBack() {
+async function moveBack() {
+    if (getPathname() === '/month') {
+        let previous_month, previous_year
+        let month = getParameterByName('month'), year = getParameterByName('year')
+        if (month === '1') {
+            previous_month = 12
+            previous_year = year - 1
+        } else {
+            previous_month = month - 1
+            previous_year = year
+        }
+        location.href = getURL() + "?month=" + previous_month + "&year=" + previous_year
+    } else if (getPathname() === '/week') {
+        console.log("ESTAMOS EN WEEK")
+        let previous_month, previous_year, previous_week
+        let month = getParameterByName('month'), year = getParameterByName('year'), week = getParameterByName('week')
+        if (month === '1' && week === '1') {
+            previous_year = year - 1
+            previous_month = 12
+            let parameters = "?month=" + previous_month + "&year=" + year
+            previous_week = await call_API('/api/how_many_rows_take', parameters)
+        }
+        else if(week === '1') {
+            previous_year = year
+            previous_month = month - 1
+            let parameters = "?month=" + previous_month + "&year=" + year
+            previous_week = await call_API('/api/how_many_rows_take', parameters)
+        } else {
+            previous_year = year
+            previous_month = month
+            previous_week = week - 1
+        }
+        location.href = getURL() + "?month=" + previous_month + "&year=" + previous_year + "&week=" + previous_week
+    } else if (getPathname() === '/day') {
+        console.log("Estamos en day")
+        let previous_month, previous_year, previous_day
+        let month = getParameterByName('month'), year = getParameterByName('year'), day = getParameterByName('day')
+        if (month === '1' && day === '1') {
+            previous_day = 31
+            previous_month = 12
+            previous_year = year - 1
+        } else if (day === '1') {
+            previous_month = month - 1
+            previous_year = year
+            let parameters = '?month=' + previous_month + "&year=" + previous_year
+            let cant_days = await call_API('/api/how_many_days_have_a_month', parameters)
+            
+            previous_day = cant_days
+        } else {
+            previous_day = day - 1
+            previous_month = month
+            previous_year = year
+        }
+        location.href = getURL() + "?month=" + previous_month + "&year=" + previous_year + "&day=" + previous_day
+    }
     /* 
     let date = new Date()
     let previous_month, previous_year, previous_week, previous_day
@@ -112,11 +182,12 @@ function moveBack() {
     
 }
 
-function moveForward() {
+function moveNext() {
     console.log("DE PENDEJO TE SIGO")
 }
 
 function create_selection_mode(year) {
+    /*
     let res =  '<h3>SELECT FORM OF DATA</h3>                                 \
                 <form>                                                       \
                     <p><input type="radio" name="type_of_day">DAY   </p>     \
@@ -135,7 +206,8 @@ function create_selection_mode(year) {
 
     res += '        </select> \
                 </form>'
-    return res
+                */
+    return ''
 }
 
 
