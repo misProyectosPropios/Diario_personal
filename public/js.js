@@ -162,7 +162,61 @@ async function moveBack() {
     }   
 }
 
-function moveNext() {
+async function moveNext() {
+    if (getPathname() === '/month') {
+        let next_month, next_year
+        let month = getParameterByName('month'), year = getParameterByName('year')
+        if (month === '12') {
+            next_month = 1
+            next_year = parseInt(year) + 1
+        } else {
+            next_month = parseInt(month) + 1
+            next_year = year
+        }
+        location.href = getURL() + "?month=" + next_month + "&year=" + next_year
+    } else if (getPathname() === '/week') {
+        console.log("ESTAMOS EN WEEK")
+        let next_month, next_year, next_week
+        let month = getParameterByName('month'), year = getParameterByName('year'), week = getParameterByName('week')
+        let parameters = "?month=" + month + "&year=" + year
+        how_many_weeks_has = await call_API('/api/how_many_rows_take', parameters)
+        if (month === '12' && week === how_many_weeks_has) {
+            next_year = parseInt(year) + 1
+            next_month = 1
+            next_week = 1
+        }
+        else if(week === how_many_weeks_has) {
+            next_year = year
+            next_month = parseInt(month) + 1
+            next_week = 1   
+        } else {
+            next_year = year
+            next_month = month
+            next_week = parseInt(week) + 1
+        }
+        location.href = getURL() + "?month=" + next_month + "&year=" + next_year + "&week=" + next_week
+    } else if (getPathname() === '/day') {
+        console.log("Estamos en day")
+        let next_month, next_year, next_day
+        let month = getParameterByName('month'), year = getParameterByName('year'), day = getParameterByName('day')
+        let parameters = "?month=" + month + "&year=" + year
+        let how_many_days_have_a_month = await call_API('/api/how_many_rows_take', parameters)
+        
+        if (month === '12' && day === '31') {
+            next_day = 1
+            next_month = 1
+            next_year = parseInt(year) + 1
+        } else if (day === how_many_days_have_a_month) {
+            next_month = parseInt(month) + 1
+            next_year = year
+            next_day = 1
+        } else {
+            next_day = parseInt(day) + 1
+            next_month = month
+            next_year = year
+        }
+        location.href = getURL() + "?month=" + next_month + "&year=" + next_year + "&day=" + next_day
+    }   
     console.log("DE PENDEJO TE SIGO")
 }
 
