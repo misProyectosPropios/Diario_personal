@@ -126,12 +126,20 @@ async function moveBack() {
             previous_month = 12
             let parameters = "?month=" + previous_month + "&year=" + year
             previous_week = await call_API('/api/how_many_rows_take', parameters)
+            when_is_last_day_of_month = await call_API('/api/when_is_last_day', parameters)
+            if (when_is_last_day_of_month !=='6') {
+                previous_week = parseInt(previous_week) - 1
+            }
         }
         else if(week === '1') {
             previous_year = year
             previous_month = month - 1
             let parameters = "?month=" + previous_month + "&year=" + year
             previous_week = await call_API('/api/how_many_rows_take', parameters)
+            when_is_last_day_of_month = await call_API('/api/when_is_last_day', parameters)
+            if (when_is_last_day_of_month !=='6') {
+                previous_week = parseInt(previous_week) - 1
+            }
         } else {
             previous_year = year
             previous_month = month
@@ -180,16 +188,20 @@ async function moveNext() {
         let month = getParameterByName('month'), year = getParameterByName('year'), week = getParameterByName('week')
         let parameters = "?month=" + month + "&year=" + year
         how_many_weeks_has = await call_API('/api/how_many_rows_take', parameters)
+        let when_is_last_day_of_month = await call_API('/api/when_is_last_day', parameters)
         if (month === '12' && week === how_many_weeks_has) {
             next_year = parseInt(year) + 1
             next_month = 1
             next_week = 1
-        }
-        else if(week === how_many_weeks_has) {
+        } else if(when_is_last_day_of_month !== 6 && parseInt(week) === parseInt(how_many_weeks_has) - 1) {
             next_year = year
             next_month = parseInt(month) + 1
             next_week = 1   
-        } else {
+        } else if (week > how_many_weeks_has) {
+            next_year = year
+            next_month = parseInt(month) + 1
+            next_week = 1 
+        }else {
             next_year = year
             next_month = month
             next_week = parseInt(week) + 1

@@ -137,6 +137,17 @@ const row_name_of_days = '<tr>\n \
         }
     })
 
+    app.get('/api/when_is_last_day', (req, res) => {
+        if (has_parameter_on_URL(req, 'month') && has_parameter_on_URL(req, 'year')) {
+            let month = req.query['month']
+            let year = req.query['year']
+            let cant_days = calendar.how_many_days_have_a_month(month, year)
+            res.send(calendar.day_of_a_particular_date(cant_days, month, year).toString())
+        } else {
+            res.status(404).send("404: PAGE NOT FOUND")
+        }
+    })
+
 //FUNCTIONS
 
     function redirect_with_parameters(path, res) {
