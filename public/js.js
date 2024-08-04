@@ -159,27 +159,7 @@ async function moveBack() {
             previous_year = year
         }
         location.href = getURL() + "?month=" + previous_month + "&year=" + previous_year + "&day=" + previous_day
-    }
-    /* 
-    let date = new Date()
-    let previous_month, previous_year, previous_week, previous_day
-    if (getPathname() === '/month') {
-        if (date.getMonth() === 0) {
-            previous_month = 12
-            previous_year = date.getFullYear() - 1
-        } else {
-            previous_month = date.getMonth() + 1
-            previous_year = date.getFullYear()
-        }
-        location.href = getURL() + "?month=" + previous_month + "&year"
-    }
-    else if (getPathname() === '/week') {
-        if (getParameterByName('week') === '1' && getParameterByName('month') === '1') {
-            previous_year = 
-        }
-    }
-        *///Son muchas condiciones boludo q paja
-    
+    }   
 }
 
 function moveNext() {
